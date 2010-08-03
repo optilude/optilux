@@ -5,6 +5,8 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="optilux.policy">
   
+  <includeDependencies package="." />
+  
   <genericsetup:registerProfile
       name="default"
       title="Optilux Site Policy"
