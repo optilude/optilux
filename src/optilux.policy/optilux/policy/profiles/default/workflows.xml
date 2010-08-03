@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<object name="portal_workflow">
+    <object name="optilux_sitecontent_workflow" meta_type="Workflow"/>
+    <bindings>
+        <default>
+            <bound-workflow workflow_id="optilux_sitecontent_workflow"/>
+        </default>
+        <type type_id="File" remove="remove" />
+        <type type_id="Image" remove="remove" />
+        <type type_id="Plone Site" />
+    </bindings>
+</object>
