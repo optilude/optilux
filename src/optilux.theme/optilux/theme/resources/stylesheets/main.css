@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+* :link, :visited {
+    text-decoration: none;
+}
+
+* ul,ol {
+    list-style: none;
+}
+
+* li {
+    display: inline;
+}
+* h1, h2, h3, h4, h5, h6, pre, code {
+    font-size: 1em;
+}
+
+* a img, :link img, :visited img {
+    border: none;
+}
+
+a {
+    outline: none;
+}
+
+table {
+    border-spacing: 0;
+}
+
+img {
+    vertical-align: text-bottom;
+}
+
+body {
+    font: 100% Arial, FreeSans, sans-serif;
+    color: Black;
+    background: url(../images/left.png) repeat-y;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Arial;
+    font-weight: bold;
+    color: Black;
+    line-height: 1.5em;
+    letter-spacing: 0em;
+}
+h1 {
+    font-size: 2em;
+}
+
+#wrapper {
+    width: 800px;
+    background: url(../images/header.png) no-repeat;
+}
+
+#header {
+    height: 132px;
+}
+#columns {
+    clear: both;
+}
+#column-one {
+    float: left;
+    width: 181px;
+}
+#column-two {
+    float: right;
+    width: 161px;
+}
+#column-content {
+    margin: 0 161px 0 181px;
+}
+
+body.noRightColumn #column-content {
+    margin-right: 0;
+}
+
+#column-content .visualPadding {
+    padding: 0 30px;
+}
+#footer {
+    clear: both;
+    height: 24px;   
+}
+
+#logo {
+    border: none;
+    float: left;
+    margin: 6px 0 0 8px;
+}
+
+#global-navigation {
+    margin: 0 0 0 181px;
+    padding: 26px 0 0 0;
+}
+
+#global-navigation li a {
+    color: #FFF;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 80%;
+}
+#global-navigation li {
+    background: url(../images/global-navigation.png) left no-repeat;
+    padding: 0 6px 0 10px;
+}
+
+#global-navigation li:first-child {
+    background: none;
+}
+
+#breadcrumbs {
+    margin: 30px 0 0 202px;
+    font-size: 80%;
+    font-weight: bold;
+}
+
+#breadcrumbs a {
+    color: #ff9900;
+}
+
+#actions {
+    text-align: right;
+    margin: 10px 16px 0 0;
+}
+
+#actions a {
+    color: #000;
+    font-size: 80%;
+    font-weight: bold;
+    margin: 0 0 0 20px;
+}
+
+#document-content {
+    font-size: 80%;
+}
+
+#document-content p {
+    margin: 0 0 1em 0;
+}
+
+#column-one ul.navTree {
+    margin: 0 20px 0 20px;
+}
+
+#column-one ul.navTree li {
+    display: list-item;
+    border: none;
+    background: url(../images/sub-navigation.png) no-repeat;
+    margin: 0 0 1px 0;
+    padding: 0 0 0 12px;
+    line-height: 30px;
+    width: 100%;
+}
+
+#column-one ul.navTree li a,
+#column-one ul.navTree li a:hover {
+    background: none;
+    border: 0;
+    margin: 0;
+    color: #000 !important;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: bold;
+    padding: 0 !important;
+}
+
+dl.portlet {
+    font-size: 80%;
+    margin: 0 0 1em 0;
+}
+
+.field {
+    margin: 0 0 1em 0;
+}
+
+dl.portletLogin {
+    padding: 0 0 0 12px;
+}
+dl.portletLogin .portletHeader {
+    background: url(../images/portlet-header.png) no-repeat left;
+    padding: 0 0 0 6px;
+}
+
+dl.portletLogin dt.portletHeader a,
+dl.portletLogin dt.portletHeader a:hover {
+    color: #ff9900;
+    font-weight: bold;
+}
+
+dl.portletLogin dd.portletItem {
+    padding: 0 0 0 5px;
+}
+
+dl.portletLogin .even {
+    display: none;
+}
+
+dl.portletLogin label {
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+div.formControls {
+    margin: 0;
+}
+
+.ploneCalendar .todaynoevent {
+    border:2px solid #ff9900;
+}
+
+dl.portletCalendar dt.portletHeader {
+    background: #eeeddc;
+    border-left: solid 1px #c1bb85;
+    border-right: solid 1px #c1bb85;
+    border-top: solid 1px #c1bb85;
+    text-align: center;
+    padding: 0;
+    font-weight: normal;
+}
+
+dl.portletCalendar dt.portletHeader a,
+dl.portletCalendar dt.portletHeader a:hover {
+    color: #c1bb85;
+}
+
+dl.portletCalendar dt.portletHeader a.prev {
+    float: left;
+    margin:0 -0.5em;
+    padding:0 1em;
+}
+
+dl.portletCalendar dt.portletHeader a.next {
+    float: right;
+    margin:0 -0.5em;
+    padding:0 1em;
+}
+
+dl.portletCalendar dd.portletItem {
+    padding: 0;
+}
+
+dl.portletCalendar .ploneCalendar {
+    width: 100%;
+    border: solid 1px #c1bb85;
+}
+
+dl.portletCalendar .ploneCalendar td {
+    padding: 2px;
+    width: 14%;
+    text-align: center;
+}
+
+dl.portletCalendar .ploneCalendar th {
+    background: #eeeddc;
+    border-bottom: solid 1px #c1bb85;
+}
+
+dl.portletSearch input.searchButton {
+    display: block;
+    margin-top: 5px;
+}
+
+form {
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+#searchform .searchButton {
+    margin-left: 10px;
+}
+
+dl.portalMessage {
+    clear: none;
+}
+
+#content {
+    clear: none;
+}

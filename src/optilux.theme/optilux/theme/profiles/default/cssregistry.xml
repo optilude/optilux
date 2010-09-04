@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<object name="portal_css">
+
+  <!-- Register the two stylesheets from the theme, using a condition to
+       ensure they only show up when the Diazo theme is in effect.
+    -->
+   
+  <stylesheet id="++theme++optilux.theme/stylesheets/main.css"
+              expression="request/HTTP_X_THEME_ENABLED | nothing"
+              applyPrefix="True" />
+
+  <stylesheet id="++theme++optilux.theme/stylesheets/iefixes.css"
+              expression="request/HTTP_X_THEME_ENABLED | nothing"
+              conditionalcomment="IE"
+              applyPrefix="True" />
+
+</object>

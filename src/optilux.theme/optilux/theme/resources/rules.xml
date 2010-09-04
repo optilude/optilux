@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    
+    <!-- Rules applying to standard Plone pages -->
+    <rules css:if-content="#visual-portal-wrapper">
+        
+        <theme href="index.html" />
+        
+        <!-- Copy standard header tags, including base (very important for
+             Plone default pages to work correctly), meta, title and
+             style sheets/scripts, in the order they appear in the content.
+         -->
+        <drop theme="/html/head/meta" />
+        <drop theme="/html/head/title" />
+        <drop theme="/html/head/base" />
+        <drop theme="/html/head/style" />
+        <drop theme="/html/head/script" />
+        <drop theme="/html/head/link" />
+        <drop theme="/html/head/comment()" />
+        
+        <after content="/html/head/meta" theme-children="/html/head" />
+        <after content="/html/head/title" theme-children="/html/head" />
+        
+        <after
+            content="/html/head/base | /html/head/style | /html/head/script | /html/head/link | /html/head/comment()"
+            theme-children="/html/head"
+            />
+
+        <!-- Copy over the id/class attributes on the body tag. This is important
+             for per-section styling -->
+        <copy attributes="class id dir" content="/html/body" theme="/html/body" />
+
+        <!-- Logo (link target) -->
+        <copy attributes="href" css:content="#portal-logo" css:theme="#logo" />
+
+        <!-- Site actions -->
+        <replace css:content="#portal-siteactions li" css:theme-children="#actions" />
+
+        <!-- User actions -->
+
+        <!-- The logged-in actions are a list... -->
+        <after css:content="#portal-personaltools li" css:theme-children="#actions" />
+
+        <!-- ... but for anonymous users, it's a dl, so we build list elements
+             using XSL directives
+          -->
+        <after css:theme-children="#actions">
+            <xsl:for-each css:select="#anon-personalbar > a">
+                <li><xsl:copy-of css:select="a"/></li>
+            </xsl:for-each>
+        </after>
+
+        <!-- Global navigation -->
+        <replace css:content='#portal-globalnav li' css:theme-children='#global-navigation' />
+
+        <!-- Breadcrumbs -->
+        <replace css:content-children='#portal-breadcrumbs' css:theme-children='#breadcrumbs' />
+
+        <!-- Document Content -->
+        <replace css:content="#content" css:theme="#document-content" />
+        
+        <!-- Edit bar -->
+        <before css:content="#edit-bar" css:theme="#document-content" />
+        
+        <!-- Status messages not inside #content -->
+        <drop css:content="#content .portalMessage"/>
+        <before css:content=".portalMessage" method="raw" css:theme="#document-content" />
+        
+        <!-- Drop navtree images -->
+        <drop css:content="dl#portletNavigationTree img" />
+
+        <!-- Columns -->
+        <replace css:content-children="#portal-column-one" css:theme-children="#column-one" />
+        <replace css:content-children="#portal-column-two" css:theme-children="#column-two" />
+
+        <!-- Footer -->
+        <after css:content="#kss-spinner" theme-children="/html/body" />
+    
+    </rules>
+
+</rules>

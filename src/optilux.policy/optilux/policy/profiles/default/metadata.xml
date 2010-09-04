@@ -2,5 +2,6 @@
     <version>1</version>
     <dependencies>
         <dependency>profile-Products.PloneFormGen:default</dependency>
+        <dependency>profile-optilux.theme:default</dependency>
     </dependencies>
 </metadata>

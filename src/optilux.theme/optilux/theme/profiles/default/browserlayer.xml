@@ -1,0 +1,10 @@
+<layers>
+    
+    <!-- Enable the Optilux Theme layer when installed -->
+    
+    <layer
+        name="optilux.theme"
+        interface="optilux.theme.interfaces.IOptiluxTheme"
+        />
+
+</layers>
