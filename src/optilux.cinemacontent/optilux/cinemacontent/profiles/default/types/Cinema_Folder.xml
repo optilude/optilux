@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!-- This file defines a cinema folder's factory-based type information (FTI).
+  -->
+<object name="Cinema Folder"
+   meta_type="Factory-based Type Information with dynamic views"
+   i18n:domain="optilux.cinemacontent" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+   
+ <!-- We give a title and a description, shown in the UI, as well as an icon.
+   -->
+ <property name="title" i18n:translate="">Cinema Folder</property>
+ <property name="description"
+     i18n:translate="">A folder which can contain cinemas.</property>
+ <property name="content_icon">++resource++cinemafolder_icon.gif</property>
+ 
+ <!-- The meta type, product and factory are used to instantiate the object 
+      in Plone's UI. The name of the object in portal_types (i.e. the object 
+      we are configuring in this file) is referred to as the "portal_type". 
+      Normally, the meta_type and portal_type are the same, but not always. 
+      The meta_type can generally not be changed, whilst the portal_type is
+      configurable in the ZODB, by renaming the FTI object in portal_types.
+      
+      Here, we set the name of the product (this package) and a factory 
+      method, which is actually generated for us by Archetypes, based on the
+      type name.
+      
+      CMF also supports register a named utility providing the interface
+      zope.component.interfaces.IFactory, which will be called to create the 
+      content object, in which case this is named in the 'factory' parameter
+      and the 'product' parameter must be left blank. However, this does not
+      play well with some of Archetypes' assumptions about acquisition 
+      contexts, so we use the traditional approach instead.
+   -->
+ <property name="content_meta_type">CinemaFolder</property>
+ <property name="product">optilux.cinemacontent</property>
+ <property name="factory">addCinemaFolder</property>
+ 
+ <!-- The immediate_view is supposed to be the view that is shown immediately
+      after an object is created. Plone currently doesn't use this, however.
+      It will always show the "edit" form during content creation, and then
+      go to the view.
+   -->
+ <property name="immediate_view">atct_edit</property>
+ 
+ <!-- global_allow specifies whether the object is generally addable. If
+      this is False, only those folders that set filter_content_types to
+      True and includes the portal_type of this object in the list of
+      allowed_content_types will allow creation of this type. Here,
+      we let cinema folders be addable in normal folders (provided the
+      user has the appropriate permissions, of course). We then explicitly
+      filter the content types allowed inside a Cinema Folder, restricting
+      them to Cinema, Promotion and other nested Cinema Folders. Of course, 
+      this can be changed in the ZODB later.
+   -->
+ <property name="global_allow">True</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types">
+     <element value="Cinema" />
+     <element value="Cinema Folder" />
+     <element value="Promotion" />
+ </property>
+ 
+ <!-- We do not allow discussion on cinema folders by default -->
+ <property name="allow_discussion">False</property>
+ 
+ <!-- The next twoproperties define the default view and available view
+      methods, i.e. those selectable in the "display" menu. This is the
+      added functionality that a "Factory-based Type Information with dynamic 
+      views" provides over a regular Factory-based Type Information".
+   -->
+ <property name="default_view">view</property>
+ <property name="view_methods">
+  <element value="view"/>
+  <element value="folder_summary_view"/>
+  <element value="folder_tabular_view"/>
+  <element value="folder_listing"/>
+ </property>
+ 
+ <!-- Finally, we define method aliases and actions. For most content
+      types, these are the same. The (Default) alias can reference a
+      view or page template name, but by using a "dynamic views" FTI, we
+      use the "(dynamic view)" pseudo-target to mean "the current selection".
+      The names 'edit', 'sharing' and 'view' are conventions in Plone.
+      
+      Notice how the actions (which are rendered as tabs) use standard
+      URLs which reference the method aliases. You can of course add new
+      method aliases and/or new actions (tabs) if necessary.
+   -->
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="atct_edit"/>
+ <alias from="sharing" to="@@sharing"/>
+ <alias from="view" to="(selected layout)"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    url_expr="string:${folder_url}/" visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    url_expr="string:${object_url}/edit" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+</object>

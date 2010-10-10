@@ -3,5 +3,6 @@
     <dependencies>
         <dependency>profile-Products.PloneFormGen:default</dependency>
         <dependency>profile-optilux.theme:default</dependency>
+        <dependency>profile-optilux.cinemacontent:default</dependency>
     </dependencies>
 </metadata>

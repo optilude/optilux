@@ -1,0 +1,83 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="optilux.cinemacontent">
+
+    <!-- Declare security for custom methods and register content type-related
+         components, such as validation subscription adapters, event
+         subscribers (for adding a portlet to a newly created cinema folder),
+         and adapter factories.
+      -->
+    
+    <!-- Cinema folder -->
+    
+    <subscriber handler=".cinemafolder.addPromotionsPortlet" />
+    
+    <!-- Cinema -->
+    
+    <subscriber 
+        provides="Products.Archetypes.interfaces.IObjectPostValidation"
+        factory=".cinema.ValidateCinemaCodeUniqueness"
+        />
+    
+    <adapter factory=".cinema.cinemaCodeIndexer" name="cinemaCode" />
+    
+    <!-- Film -->
+    
+    <class class=".film.Film">
+        <require
+            permission="zope2.View"
+            attributes="tag"
+            />
+    </class>
+
+    <adapter factory=".film.BannerProvider" />
+    
+    <subscriber
+        provides="Products.Archetypes.interfaces.IObjectPostValidation"
+        factory=".film.ValidateFilmCodeUniqueness"
+        />
+    
+    <utility
+        component=".film.CurrentFilmsVocabularyFactory"
+        name="optilux.cinemacontent.CurrentFilms"
+        />
+    
+    <adapter
+        factory=".film.filmCodeIndexer"
+        name="filmCode"
+        />
+    
+    <!-- Promotion -->
+    
+    <class class=".promotion.Promotion">
+        <require
+            permission="zope2.View"
+            attributes="tag"
+            />
+    </class>
+    
+    <adapter factory=".promotion.BannerProvider" />
+    
+    <!-- Add the DAM code field via schema extension -->
+    
+    <utility
+        component=".dam.DAMCodesVocabularyFactory"
+        name="optilux.cinemacontent.DAMCodes"
+        />
+    
+    <adapter
+        factory=".dam.DAMCodeExtender"
+        name="optilux.cinemacontent.DAMCodeExtender"
+        />
+    
+    <adapter
+        factory=".dam.damCodeIndexer"
+        name="damCode"
+        />
+    
+    <!-- Apply to blob-enabled files and images -->
+    <class class="plone.app.blob.content.ATBlob">
+        <implements interface="..interfaces.IHasDAMCode" />
+    </class>
+    
+</configure>

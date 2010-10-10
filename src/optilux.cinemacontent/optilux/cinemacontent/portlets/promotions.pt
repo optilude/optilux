@@ -1,0 +1,33 @@
+<dl class="portlet portletPromotions"
+    i18n:domain="optilux.cinemacontent">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        Promotions
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <tal:items tal:repeat="promotion view/promotions">
+        <dd class="portletItem"
+            tal:define="oddrow repeat/promotion/odd;"
+            tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+            <a href=""
+               tal:attributes="href promotion/url;
+                               title promotion/title;">
+                <img tal:replace="structure promotion/image_tag" />
+                <tal:title content="promotion/title">
+                    Title
+                </tal:title>
+                <span class="portletItemDetails"
+                      tal:content="promotion/summary"
+                      >Promotion summary</span>
+            </a>
+        </dd>
+    </tal:items>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

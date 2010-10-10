@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="optilux.cinemacontent">
+<body>
+
+<metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core">
+        
+        <div metal:use-macro="python:context.widget('text', mode='view')" />
+        
+        <tal:areas condition="view/haveCinemaFolders">
+            <h2 i18n:translate="title_cinemafolder_subareas">Areas</h2>
+            <dl>
+                <tal:block repeat="area view/cinemaFolders">
+                    <dt>
+                        <a tal:attributes="href area/url"
+                           tal:content="area/title" />
+                    </dt>
+                    <dd tal:content="area/description" />
+                </tal:block>
+            </dl>
+        </tal:areas>
+        
+        <tal:cinemas condition="view/haveCinemas">
+            <h2 i18n:translate="title_cinemafolder_subareas">Cinemas</h2>
+            <dl>
+                <tal:block repeat="cinema view/cinemas">
+                    <dt>
+                        <a tal:attributes="href cinema/url"
+                           tal:content="cinema/title" />
+                    </dt>
+                    <dd tal:content="cinema/address" />
+                </tal:block>
+            </dl>
+        </tal:cinemas>
+        
+    </metal:content-core>
+</metal:content-core>
+
+</body>
+</html>

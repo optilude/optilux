@@ -13,5 +13,11 @@
         <role name="Editor" />
         <role name="StaffMember" />
     </permission>
+    <permission name="Optilux: Add Promotion" acquire="False">
+        <role name="Manager" />
+        <role name="Owner" />
+        <role name="Editor" />
+        <role name="StaffMember" />
+    </permission>
   </permissions>
 </rolemap>

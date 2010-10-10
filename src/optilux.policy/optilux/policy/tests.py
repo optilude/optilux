@@ -50,3 +50,26 @@ class TestSetup(unittest.TestCase):
         portal_types = getToolByName(portal, 'portal_types')
         
         self.assertTrue("FormFolder" in portal_types)
+    
+    def test_cinemacontent_installed(self):
+        portal = self.layer['portal']
+        portal_types = getToolByName(portal, 'portal_types')
+        
+        self.assertTrue('Cinema' in portal_types)
+    
+    def test_metaTypesNotToList_configured(self):
+        portal = self.layer['portal']
+        portal_properties = getToolByName(portal, 'portal_properties')
+        navtree_properties = portal_properties['navtree_properties']
+        metaTypesNotToList = navtree_properties.getProperty('metaTypesNotToList')
+        
+        self.assertTrue("Promotion" in metaTypesNotToList)
+        self.assertTrue("Discussion Item" in metaTypesNotToList)
+        self.assertFalse("Cinema" in metaTypesNotToList)
+
+    def test_add_promotion_permission_for_staffmember(self):
+        portal = self.layer['portal']
+        
+        self.assertTrue('Optilux: Add Promotion' in [r['name'] for r in 
+                                portal.permissionsOfRole('StaffMember')
+                                if r['selected']])

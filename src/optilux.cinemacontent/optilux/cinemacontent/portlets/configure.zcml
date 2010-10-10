@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="optilux.cinemacontent">
+
+    <!-- Ensure Plone's portlets ZCML has already been processed; without
+         this, we may get a permission lookup error
+      -->
+    <include package="plone.app.portlets" />
+
+    <plone:portlet
+        name="optilux.Promotions"
+        interface=".promotions.IPromotionsPortlet"
+        assignment=".promotions.Assignment"
+        renderer=".promotions.Renderer"
+        addview=".promotions.AddForm"
+        editview=".promotions.EditForm"
+        />
+    
+</configure>

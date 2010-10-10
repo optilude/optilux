@@ -1,0 +1,118 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="optilux.cinemacontent">
+
+    <include package="plone.app.contentmenu" />
+
+    <!-- Define the main views of each content type. The 'for' attribute
+         specifies which type of content the view will be available for,
+         and since these are all different, we do not get conflicts even
+         though they all share the same 'name'. The 'permission' is a
+         permission which is required to access the view. The 'class'
+         attribute specifies a view class which will be used to render
+         the page. The 'template' attribute specifies the page template to
+         use. Either 'class' or 'template' may be omitted if not needed.
+         
+         We also define an icon for each type, and a shared stylesheet. The
+         stylesheet is included in various templates explicitly.
+         
+         Note that the Film Folder type uses only standard Plone templates
+         for its views, so no additional views are defined here.
+    -->
+
+    <browser:resource
+        name="optilux-cinemacontent.css"
+        file="cinemacontent.css"
+        />
+
+    <browser:resource
+        name="cinemafolder_icon.gif"
+        image="cinemafolder_icon.gif"
+        />
+        
+    <browser:page
+        for="..interfaces.ICinemaFolder"
+        name="view"
+        class=".cinemafolder.CinemaFolderView"
+        template="cinemafolder.pt"
+        permission="zope2.View"
+        />
+        
+    <browser:menuItem
+        for="..interfaces.ICinemaFolder"
+        menu="plone_displayviews"
+        title="Cinema folder view"
+        action="@@view"
+        description="Default representation of a cinema folder"
+        />
+        
+    <browser:resource
+        name="cinema_icon.gif"
+        image="cinema_icon.gif"
+        />
+        
+    <browser:page
+        for="..interfaces.ICinema"
+        name="view"
+        class=".cinema.CinemaView"
+        template="cinema.pt"
+        permission="zope2.View"
+        />
+        
+    <browser:menuItem
+        for="..interfaces.ICinema"
+        menu="plone_displayviews"
+        title="Cinema view"
+        action="@@view"
+        description="Default representation of a cinema"
+        />
+        
+    <browser:resource
+        name="filmfolder_icon.gif"
+        image="filmfolder_icon.gif"
+        />
+        
+    <browser:resource
+        name="film_icon.gif"
+        image="film_icon.gif"
+        />
+        
+    <browser:page
+        for="..interfaces.IFilm"
+        name="view"
+        class=".film.FilmView"
+        template="film.pt"
+        permission="zope2.View"
+        />
+        
+    <browser:menuItem
+        for="..interfaces.IFilm"
+        menu="plone_displayviews"
+        title="Film view"
+        action="@@view"
+        description="Default representation of a film"
+        />
+        
+    <browser:resource
+        name="promotion_icon.gif"
+        image="promotion_icon.gif"
+        />
+        
+    <browser:page
+        for="..interfaces.IPromotion"
+        name="view"
+        class=".promotion.PromotionView"
+        template="promotion.pt"
+        permission="zope2.View"
+        />
+        
+    <browser:menuItem
+        for="..interfaces.IPromotion"
+        menu="plone_displayviews"
+        title="Promotion view"
+        action="@@view"
+        description="Default representation of a promotion"
+        />
+    
+</configure>

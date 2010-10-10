@@ -1,0 +1,7 @@
+<registry>
+  
+  <!-- Create records for our settings -->
+    
+  <records interface="optilux.cinemacontent.interfaces.IOptiluxSettings" />
+
+</registry>

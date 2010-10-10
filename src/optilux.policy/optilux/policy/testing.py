@@ -21,6 +21,7 @@ class OptiluxPolicy(PloneSandboxLayer):
         z2.installProduct(app, 'Products.TALESField')
         z2.installProduct(app, 'Products.TemplateFields')
         z2.installProduct(app, 'Products.PloneFormGen')
+        z2.installProduct(app, 'optilux.cinemacontent')
     
     def tearDownZope(self, app):
         # Uninstall products installed above
@@ -28,6 +29,7 @@ class OptiluxPolicy(PloneSandboxLayer):
         z2.uninstallProduct(app, 'Products.TemplateFields')
         z2.uninstallProduct(app, 'Products.TALESField')
         z2.uninstallProduct(app, 'Products.PythonField')
+        z2.uninstallProduct(app, 'optilux.cinemacontent')
         
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'optilux.policy:default')

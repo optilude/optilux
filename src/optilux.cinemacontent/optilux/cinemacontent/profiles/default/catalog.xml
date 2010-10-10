@@ -1,0 +1,14 @@
+<object name="portal_catalog">
+    <index name="filmCode" meta_type="FieldIndex">
+        <indexed_attr value="filmCode"/>
+    </index>
+    <index name="cinemaCode" meta_type="FieldIndex">
+        <indexed_attr value="cinemaCode"/>
+    </index>
+    <index name="damCode" meta_type="FieldIndex">
+        <indexed_attr value="damCode"/>
+    </index>
+    
+    <column value="filmCode"/>
+    <column value="cinemaCode"/>
+</object>
