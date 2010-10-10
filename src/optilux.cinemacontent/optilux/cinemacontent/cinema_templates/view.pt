@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="optilux.cinemacontent">
+<body>
+
+<metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core">
+        
+        <label for="phoneNumber" i18n:translate="label_cinema_phone_number">Phone number:</label>
+        <span id="phoneNumber" tal:content="context/phone" />
+
+        <div class="highlighted-films" tal:condition="view/haveHighlightedFilms">
+            <h3 i18n:translate="heading_featured_films">Featured films:</h3>
+            <div tal:repeat="film view/highlightedFilms">
+                <a tal:attributes="href film/url; title film/summary">
+                    <img tal:replace="structure film/imageTag" />
+                    <div tal:content="film/title" />
+                </a>
+            </div>
+        </div>
+
+        <div tal:replace="structure context/text/output" />
+        
+    </metal:content-core>
+</metal:content-core>
+
+</body>
+</html>

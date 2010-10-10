@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object name="portal_css">
+ 
+ <!-- Register our custom stylesheet so that it is included in the merged
+      resources.
+   -->
+ 
+ <stylesheet id="++resource++optilux.cinemacontent/cinemacontent.css" />
+
+</object>

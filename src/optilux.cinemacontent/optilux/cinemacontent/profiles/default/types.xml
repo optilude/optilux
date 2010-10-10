@@ -1,0 +1,13 @@
+<object name="portal_types">
+    
+ <!-- This file registers new types with portal_types. The types are
+      then configured with the corresponding files in types/*.xml.
+   -->
+ 
+ <object name="optilux.CinemaFolder" meta_type="Dexterity FTI"/>
+ <object name="optilux.Cinema"       meta_type="Dexterity FTI"/>
+ <object name="optilux.FilmFolder"   meta_type="Dexterity FTI"/>
+ <object name="optilux.Film"         meta_type="Dexterity FTI"/>
+ <object name="optilux.Promotion"    meta_type="Dexterity FTI"/>
+    
+</object>

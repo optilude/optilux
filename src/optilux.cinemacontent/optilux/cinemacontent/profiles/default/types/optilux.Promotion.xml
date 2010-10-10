@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<object name="optilux.Promotion" meta_type="Dexterity FTI"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="optilux.cinemacontent">
+    
+    <!-- Basic properties -->
+    <property name="title" i18n:translate="">Promotion</property>
+    <property name="description" i18n:translate="">A running promotion</property>
+    <property name="content_icon">++resource++optilux.cinemacontent/promotion_icon.gif</property>
+    <property name="allow_discussion">False</property>
+    
+    <!-- Hierarchy control -->
+    <property name="global_allow">True</property>
+    <property name="filter_content_types">False</property>
+    <property name="allowed_content_types" />
+    
+    <!-- Schema, class and security -->
+    <property name="schema">optilux.cinemacontent.promotion.IPromotion</property> 
+    <property name="klass">plone.dexterity.content.Item</property>
+    <property name="add_permission">optilux.AddPromotion</property>
+ 
+    <!-- enabled behaviors -->
+    <property name="behaviors">
+        <element value="plone.app.interfaces.content.INameFromTitle" />
+        <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
+        
+        <!-- Note that we only use a subset of IDublinCore here -->
+        <element value="plone.app.dexterity.behaviors.metadata.ICategorization" />
+        <element value="plone.app.dexterity.behaviors.metadata.IOwnership" />
+    </property>
+    
+    <!-- Views and aliases -->
+    <property name="default_view">view</property>
+    <property name="default_view_fallback">False</property>
+    <property name="view_methods">
+        <element value="view"/>
+    </property>
+    
+    <alias from="(Default)" to="(selected layout)"/>
+    <alias from="edit" to="@@edit"/>
+    <alias from="sharing" to="@@sharing"/>
+    <alias from="view" to="@@view"/>
+
+    <action title="View" action_id="view" category="object" condition_expr=""
+        url_expr="string:${folder_url}/" visible="True">
+        <permission value="View"/>
+    </action>
+    <action title="Edit" action_id="edit" category="object" condition_expr=""
+        url_expr="string:${object_url}/edit" visible="True">
+        <permission value="Modify portal content"/>
+    </action>
+
+</object>

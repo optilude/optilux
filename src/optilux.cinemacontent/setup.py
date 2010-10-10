@@ -3,9 +3,9 @@ import os
 
 version = '2.0'
 
-setup(name='optilux.policy',
+setup(name='optilux.cinemacontent',
       version=version,
-      description="Policy package for the Optilux Cinemas project",
+      description="Content types for the Optilux Cinemas project",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
@@ -14,7 +14,7 @@ setup(name='optilux.policy',
         "Framework :: Plone",
         "Programming Language :: Python",
         ],
-      keywords='',
+      keywords='optilux content',
       author='Martin Aspeli',
       author_email='optilude@gmail.com',
       url='http://optilux-cinemas.com',
@@ -25,21 +25,24 @@ setup(name='optilux.policy',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Plone',
-          'Products.PloneFormGen',
-          'optilux.theme',
-          'optilux.cinemacontent',
+          'Products.CMFPlone',
+          'plone.app.dexterity [grok]',
+          'plone.app.referenceablebehavior',
+          'plone.app.relationfield',
+          'plone.namedfile [blobs]', # makes sure we get blob support
+          'archetypes.schemaextender',
+          'plone.app.registry',
       ],
       extras_require={
           'test': ['plone.app.testing',]
       },
-      entry_points="""
-      # -*- Entry points: -*-
-
-      [z3c.autoinclude.plugin]
-      target = plone
-      """,
-# uncomment these to re-enable support for Paster local commands
+#      entry_points="""
+#      # -*- Entry points: -*-
+#
+#      [z3c.autoinclude.plugin]
+#      target = plone
+#      """,
+## uncomment these to re-enable support for Paster local commands
 #     setup_requires=["PasteScript"],
 #     paster_plugins=["ZopeSkel"],
       )

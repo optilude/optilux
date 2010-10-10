@@ -1,0 +1,33 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="optilux.cinemacontent">
+
+    <!-- Define new permissions -->
+    
+    <permission
+        id="optilux.AddCinemaFolder"
+        title="Optilux: Add Cinema Folder"
+        />
+
+    <permission
+        id="optilux.AddCinema"
+        title="Optilux: Add Cinema"
+        />
+
+    <permission
+        id="optilux.AddFilmFolder"
+        title="Optilux: Add Film Folder"
+        />
+
+    <permission
+        id="optilux.AddFilm"
+        title="Optilux: Add Film"
+        />
+
+    <permission
+        id="optilux.AddPromotion"
+        title="Optilux: Add Promotion"
+        />
+  
+</configure>

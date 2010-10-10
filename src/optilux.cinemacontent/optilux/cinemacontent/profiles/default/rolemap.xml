@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <!-- Map the "add" permissions for the various content types. Note that
+         we let the "Contributor" role (in a folder) be allowed to add content
+         when the "Owner" is, so that we can effectively delegate control
+         over a folder. Some content types, such as cinema folders and film
+         folders are considered to be so "structural" that only administrators
+         can add them.
+      -->
+    <permission name="Optilux: Add Cinema Folder" acquire="False">
+        <role name="Manager" />
+        <role name="Site Administrator" />
+    </permission>
+    <permission name="Optilux: Add Cinema" acquire="False">
+        <role name="Manager" />
+        <role name="Site Administrator" />
+        <role name="Owner" />
+        <role name="Contributor" />
+    </permission>
+    <permission name="Optilux: Add Film Folder" acquire="False">
+        <role name="Manager" />
+        <role name="Site Administrator" />
+    </permission>
+    <permission name="Optilux: Add Film" acquire="False">
+        <role name="Manager" />
+        <role name="Site Administrator" />
+        <role name="Owner" />
+        <role name="Contributor" />
+    </permission>
+    <permission name="Optilux: Add Promotion" acquire="False">
+        <role name="Manager" />
+        <role name="Site Administrator" />
+        <role name="Owner" />
+        <role name="Contributor" />
+    </permission>
+  </permissions>
+</rolemap>
