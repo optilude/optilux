@@ -5,6 +5,25 @@ from optilux.cinemacontent import CinemaMessageFactory as _
 
 PROMOTIONS_PORTLET_COLUMN = u"plone.rightcolumn"
 
+# Adapter interfaces
+
+class IRatings(Interface):
+    """An object which can be rated
+    """
+    
+    score = schema.Int(
+            title=_(u"A score from 1-100"),
+            readonly=True,
+        )
+         
+    def available(userToken):
+        """Whether or not rating is available for the given user
+        """
+                       
+    def rate(userToken, positive):
+        """Give a positive (True) or negative (False) vote.
+        """
+
 # Marker interfaces
 
 class IHasDAMCode(Interface):

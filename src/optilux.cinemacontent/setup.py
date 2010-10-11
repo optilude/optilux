@@ -32,6 +32,8 @@ setup(name='optilux.cinemacontent',
           'plone.namedfile [blobs]', # makes sure we get blob support
           'archetypes.schemaextender',
           'plone.app.registry',
+          'plone.app.z3cform',
+          'zope.annotation',
       ],
       extras_require={
           'test': ['plone.app.testing',]

@@ -66,10 +66,23 @@ class TestSetup(unittest.TestCase):
         self.assertTrue("Promotion" in metaTypesNotToList)
         self.assertTrue("Discussion Item" in metaTypesNotToList)
         self.assertFalse("Cinema" in metaTypesNotToList)
-
+    
     def test_add_promotion_permission_for_staffmember(self):
         portal = self.layer['portal']
         
         self.assertTrue('Optilux: Add Promotion' in [r['name'] for r in 
                                 portal.permissionsOfRole('StaffMember')
                                 if r['selected']])
+    
+    def test_dam_report_installed(self):
+        portal = self.layer['portal']
+        portal_actions = getToolByName(portal, 'portal_actions')
+        
+        self.assertTrue('dam-report' in portal_actions['site_actions'])
+    
+    def test_contact_action_installed(self):
+        portal = self.layer['portal']
+        portal_actions = getToolByName(portal, 'portal_actions')
+        
+        self.assertTrue('enquiry' in portal_actions['site_actions'])
+        self.assertFalse(portal_actions['site_actions']['contact'].visible)

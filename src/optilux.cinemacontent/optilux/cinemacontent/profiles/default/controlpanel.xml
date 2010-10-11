@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object
+    name="portal_controlpanel"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="optilux.cinemacontent">
+
+    <configlet
+        title="Optilux settings"
+        action_id="optilux"
+        appId="optilux"
+        category="Products"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@optilux-controlpanel"
+        icon_expr="string:$portal_url/++resource++film_icon.gif"
+        visible="True"
+        i18n:attributes="title">
+            <permission>Optilux: Change Settings</permission>
+    </configlet>
+</object>

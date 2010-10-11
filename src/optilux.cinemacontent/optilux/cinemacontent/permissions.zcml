@@ -29,5 +29,15 @@
         id="optilux.AddPromotion"
         title="Optilux: Add Promotion"
         />
+    
+    <permission
+        id="optilux.ChangeSettings"
+        title="Optilux: Change Settings"
+        />
+
+    <permission
+        id="optilux.ViewReports"
+        title="Optilux: View Reports"
+        />
   
 </configure>

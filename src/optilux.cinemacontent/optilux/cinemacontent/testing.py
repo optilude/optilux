@@ -2,6 +2,7 @@ from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import applyProfile
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import IntegrationTesting
+from plone.app.testing import FunctionalTesting
 
 from zope.configuration import xmlconfig
 
@@ -19,3 +20,4 @@ class OptiluxCinemaContent(PloneSandboxLayer):
 
 OPTILUX_CINEMACONTENT_FIXTURE = OptiluxCinemaContent()
 OPTILUX_CINEMACONTENT_INTEGRATION_TESTING = IntegrationTesting(bases=(OPTILUX_CINEMACONTENT_FIXTURE,), name="OptiluxCinemaContent:Integration")
+OPTILUX_CINEMACONTENT_FUNCTIONAL_TESTING = FunctionalTesting(bases=(OPTILUX_CINEMACONTENT_FIXTURE,), name="OptiluxCinemaContent:Functional")

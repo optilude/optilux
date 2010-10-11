@@ -20,5 +20,9 @@
         <role name="Editor" />
         <role name="StaffMember" />
     </permission>
+    <permission name="Optilux: View Reports" acquire="False">
+        <role name="Manager" />
+        <role name="StaffMember" />
+    </permission>
   </permissions>
 </rolemap>

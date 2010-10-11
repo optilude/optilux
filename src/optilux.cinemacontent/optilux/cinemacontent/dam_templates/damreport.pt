@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="optilux.cinemacontent">
+<body>
+
+<metal:main fill-slot="main">
+    <metal:main define-macro="main"
+           tal:define="b_size   python:10;
+                       b_orphan python:1;
+                       b_start  request/b_start | python:0;
+                       content  python:view.relatedContent(start=b_start, size=b_size+b_orphan);
+                       currentSelection view/selectedDAMCode">
+        
+        <h1 class="documentFirstHeading"
+            i18n:translate="header_recent_dam_report">
+          DAM report
+        </h1>
+        
+        <p class="documentDescription" i18n:translate="description_recent_dam_report">
+            This report shows content associated with DAM codes
+        </p>
+        
+        <form method="get" tal:attributes="action string:${context/absolute_url}/${view/__name__}">
+            
+            <span tal:replace="structure context/@@authenticator/authenticator" />
+            
+            <fieldset>
+                <legend i18n:translate="fieldset_legend_search">Search parameters</legend>
+            
+                    <div i18n:translate="dam_report_code">
+                        Select a code
+                
+                        <select name="damCode" size="1">
+                            <option value="">Please select</option>
+                            <option
+                                tal:repeat="code view/damCodes"
+                                tal:attributes="value code;
+                                                selected python:currentSelection == code and 'selected' or None"
+                                tal:content="code"
+                                />
+                        </select>
+                
+                        <input type="submit" class="context" name="form.button.Search"
+                            value="Search"
+                            i18n:name="submit_button"
+                            i18n:attributes="value" />
+                    </div>
+            </fieldset>
+        </form>
+        
+        <h2 i18n:translate="heading_search_results">Search results</h2>
+        
+        <p tal:condition="not:content" i18n:translate="description_no_content_found">
+            No content found
+        </p>
+        
+        <tal:block condition="content"
+                   define="Batch python:modules['Products.CMFPlone'].Batch;
+                           batch python:Batch(content, b_size, int(b_start), orphan=int(b_orphan));">
+        
+            <table class="listing">
+                <thead>
+                    <tr>
+                        <th i18n:translate="column_label_title">Title</th>
+                        <th i18n:translate="column_label_modified">Modified</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tal:repeat="item batch">
+                        <td>
+                            <a tal:attributes="title item/Description;
+                                               href item/getURL"
+                                tal:content="item/Title" />
+                        </td>
+                        <td tal:content="python:view.localize(item.modified)" />
+                    </tr>
+                </tbody>
+            </table>
+        
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
+        
+        </tal:block>
+        
+
+    </metal:main>
+</metal:main>
+
+</body>
+</html>

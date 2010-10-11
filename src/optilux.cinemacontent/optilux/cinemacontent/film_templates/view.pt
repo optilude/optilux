@@ -21,10 +21,10 @@
         </div>
 
         <div class="film-banner">
-            <img tal:replace="structure context/@@images/image/thumb" />
+            <img tal:replace="structure context/@@images/image/thumb | nothing" />
         </div>
         
-        <div tal:replace="structure context/teaser/output" />
+        <div tal:replace="structure context/teaser/output | nothing" />
         
     </metal:content-core>
 </metal:content-core>

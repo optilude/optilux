@@ -1,0 +1,35 @@
+<dl class="portalMessage info" i18n:domain="optilux.cinemacontent">
+    <dt i18n:translate="">
+        Ratings
+    </dt>
+    <dd>
+        <div i18n:translate="info_film_rating" tal:condition="viewlet/haveScore">
+            <span i18n:name="rating" tal:replace="viewlet/score" />% of those who voted liked this film.
+        </div>
+        <div i18n:translate="info_film_rating_none" tal:condition="not:viewlet/haveScore">
+            No-one has voted yet
+        </div>
+        <form method="get" tal:attributes="action context/absolute_url" tal:condition="viewlet/available">
+            
+            <span tal:replace="structure context/@@authenticator/authenticator"/>
+            
+            <div i18n:translate="vote_film_rating">
+                Did you like this film?
+                <input
+                    type="submit"
+                    name="optilux.cinemacontent.ratings.VotePositive"
+                    value="Yes"
+                    i18n:attributes="value button_yes"
+                    i18n:name="yes_button"
+                    />
+                <input
+                    type="submit"
+                    name="optilux.cinemacontent.ratings.VoteNegative"
+                    value="No"
+                    i18n:attributes="value button_no"
+                    i18n:name="no_button"
+                    />
+            </div>
+        </form>
+    </dd>
+</dl>

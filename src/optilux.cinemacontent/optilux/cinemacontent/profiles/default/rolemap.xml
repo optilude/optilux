@@ -34,5 +34,12 @@
         <role name="Owner" />
         <role name="Contributor" />
     </permission>
+    <permission name="Optilux: Change Settings" acquire="False">
+        <role name="Manager" />
+        <role name="Site Administrator" />
+    </permission>
+    <permission name="Optilux: View Reports" acquire="False">
+        <role name="Manager" />
+    </permission>
   </permissions>
 </rolemap>
