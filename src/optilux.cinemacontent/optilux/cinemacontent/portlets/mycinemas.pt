@@ -1,0 +1,33 @@
+<dl class="portlet portletMyCinema"
+    i18n:domain="optilux.cinemacontent">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        My cinemas
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <tal:items tal:repeat="cinema view/cinemas">
+        <dd class="portletItem"
+            tal:define="oddrow repeat/cinema/odd;"
+            tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+            <a href=""
+               tal:attributes="href cinema/url;
+                               title cinema/address;">
+                <img tal:attributes="href context/++resource++cinema_icon.gif" />
+                <tal:title content="cinema/title">
+                    Title
+                </tal:title>
+                <span class="portletItemDetails"
+                      tal:content="cinema/address"
+                      >Cinema address</span>
+            </a>
+        </dd>
+    </tal:items>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

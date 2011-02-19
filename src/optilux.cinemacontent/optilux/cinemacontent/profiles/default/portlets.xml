@@ -11,4 +11,10 @@
        description="A portlet which can show current promotions."
        />
     
+    <portlet 
+       addview="optilux.MyCinemas"
+       title="My cinemas"
+       description="A portlet which can show the user's 'home' cinema."
+       />
+    
 </portlets>

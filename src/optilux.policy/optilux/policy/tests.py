@@ -86,3 +86,23 @@ class TestSetup(unittest.TestCase):
         
         self.assertTrue('enquiry' in portal_actions['site_actions'])
         self.assertFalse(portal_actions['site_actions']['contact'].visible)
+
+    def test_manage_own_portlets_permission(self):
+        portal = self.layer['portal']
+        
+        self.assertTrue('Portlets: Manage own portlets' in
+                [r['name'] for r in 
+                    portal.permissionsOfRole('StaffMember')
+                        if r['selected']])
+        self.assertFalse('Portlets: Manage own portlets' in
+                [r['name'] for r in 
+                    portal.permissionsOfRole('Member')
+                        if r['selected']])
+    
+    def test_add_portal_member_permission(self):
+        portal = self.layer['portal']
+        
+        self.assertTrue('Add portal member' in
+                [r['name'] for r in 
+                    portal.permissionsOfRole('Anonymous')
+                    if r['selected']])

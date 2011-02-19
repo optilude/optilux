@@ -17,4 +17,12 @@
         editview=".promotions.EditForm"
         />
     
+    <plone:portlet
+        name="optilux.MyCinemas"
+        interface=".mycinemas.IMyCinemasPortlet"
+        assignment=".mycinemas.Assignment"
+        renderer=".mycinemas.Renderer"
+        addview=".mycinemas.AddForm"
+        />
+    
 </configure>

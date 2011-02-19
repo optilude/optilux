@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<object name="portal_actions"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+   
+   <object name="user">
+       
+       <object name="facebook-login" meta_type="CMF Action"
+                i18n:domain="optilux.cinemacontent">
+           <property name="title" i18n:translate="">Login with Facebook</property>
+           <property name="description" i18n:translate=""></property>
+           <property name="url_expr">string:$portal_url/@@facebook-login</property>
+           <property name="icon_expr"></property>
+           <property name="available_expr">python:member is None</property>
+           <property name="permissions">
+               <element value="View"/>
+           </property>
+           <property name="visible">True</property>
+      </object>
+      
+      <!-- Disable the built-in login action -->
+      <object name="login">
+          <property name="visible">False</property>
+      </object>
+       
+   </object>
+
+</object>
