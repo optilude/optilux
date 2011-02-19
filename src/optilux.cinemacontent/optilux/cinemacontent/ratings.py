@@ -1,3 +1,5 @@
+import json
+
 from five import grok
 
 from BTrees.OOBTree import OOSet
@@ -12,6 +14,8 @@ from zope.component import getMultiAdapter
 from plone.app.layout.globals.interfaces import IViewView
 from plone.app.layout.viewlets.interfaces import IBelowContentTitle
 from zExceptions import Forbidden
+
+from Products.CMFCore.utils import getToolByName
 
 POSITIVE_KEY = 'optilux.cinemacontent.ratings.positive'
 NEGATIVE_KEY = 'optilux.cinemacontent.ratings.negative'
@@ -168,3 +172,63 @@ class RatingsViewlet(grok.Viewlet):
     
     def score(self):
         return self.ratings.score
+
+class UpdateRatings(grok.View):
+    """AJAX action for updating ratings.
+    """
+    
+    grok.context(IFilm)
+    grok.name('update-ratings')
+    grok.require('zope2.View')
+    
+    def update(self):
+        self.ratings = IRatings(self.context)
+        self.portal_state = getMultiAdapter(
+                (self.context, self.request),
+                name=u"plone_portal_state"
+            )
+        self.authenticator = getMultiAdapter(
+                (self.context, self.request),
+                name=u"authenticator"
+            )
+        
+        form = self.request.form
+        
+        if self.portal_state.anonymous():
+            raise Forbidden()
+        
+        vote = None
+        if 'optilux.cinemacontent.ratings.VotePositive' in form:
+            vote = True
+        elif 'optilux.cinemacontent.ratings.VoteNegative' in form:
+            vote = False
+        
+        if vote is None:
+            return
+        
+        # Perform CSRF check (see plone.protect)
+        if not self.authenticator.verify():
+            raise Forbidden()
+        
+        userToken = self.portal_state.member().getId()
+        if userToken is not None and self.ratings.available(userToken):
+            self.ratings.rate(userToken, vote)
+        
+    def render(self):
+        score = self.ratings.score
+        
+        # Capture a status message and translate it
+        translation_service = getToolByName(self.context, 'translation_service')
+        newStatus = translation_service.translate('score_update_thankyou',
+                        domain='optilux.cinemacontent',
+                        mapping={'score': score},
+                        context=self.context,
+                        default=u"Thank you. ${score}% of those who voted liked this film.")
+        
+        data = {
+                'score': score,
+                'newStatus': newStatus,
+            }
+        
+        self.request.response.setHeader('Content-Type', 'application/json')
+        return json.dumps(data)

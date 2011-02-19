@@ -1,15 +1,17 @@
-<dl class="portalMessage info" i18n:domain="optilux.cinemacontent">
+<dl id="filmRatings" class="portalMessage info" i18n:domain="optilux.cinemacontent"
+    tal:attributes="data-ajax-target string:${context/absolute_url}/@@update-ratings">
+
     <dt i18n:translate="">
         Ratings
     </dt>
     <dd>
-        <div i18n:translate="info_film_rating" tal:condition="viewlet/haveScore">
+        <div id="ratingStatus" i18n:translate="info_film_rating" tal:condition="viewlet/haveScore">
             <span i18n:name="rating" tal:replace="viewlet/score" />% of those who voted liked this film.
         </div>
-        <div i18n:translate="info_film_rating_none" tal:condition="not:viewlet/haveScore">
+        <div id="ratingStatus" i18n:translate="info_film_rating_none" tal:condition="not:viewlet/haveScore">
             No-one has voted yet
         </div>
-        <form method="get" tal:attributes="action context/absolute_url" tal:condition="viewlet/available">
+        <form id="ratingForm" method="get" tal:attributes="action context/absolute_url" tal:condition="viewlet/available">
             
             <span tal:replace="structure context/@@authenticator/authenticator"/>
             
