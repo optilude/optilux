@@ -14,7 +14,7 @@
             <img tal:replace="structure context/@@images/image/thumb" />
         </div>
         
-        <div tal:replace="structure context/details/output" />
+        <div tal:replace="structure context/details/output | nothing" />
 
     </metal:content-core>
 </metal:content-core>

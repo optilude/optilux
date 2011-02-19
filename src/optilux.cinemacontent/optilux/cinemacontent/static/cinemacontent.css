@@ -23,3 +23,7 @@
 .highlighted-films a {
     display: block;
 }
+
+.reservation-info {
+    margin: 10px 0;
+}

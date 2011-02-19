@@ -23,7 +23,21 @@
             </div>
         </div>
 
-        <div tal:replace="structure context/text/output" />
+        <div tal:replace="structure context/text/output | nothing" />
+        
+        <h2 i18n:translate="title_cinema_now_showing">Now showing</h2>
+        <dl>
+            <tal:block repeat="film view/films">
+                <dt>
+                    <a tal:attributes="href film/url" tal:content="film/name" />
+                    <a tal:attributes="href string:${context/absolute_url}/@@screenings/${film/filmCode}"
+                       i18n:translate="label_view_screenings">
+                       (show times)
+                    </a>
+                </dt>
+                <dd tal:content="film/summary" />
+            </tal:block>
+        </dl>
         
     </metal:content-core>
 </metal:content-core>

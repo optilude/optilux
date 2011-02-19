@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="optilux.cinemacontent">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+           tal:define="film view/film;
+                       cinemaURL context/absolute_url;">
+
+        <h1 class="documentFirstHeading" i18n:translate="header_cinema_screenings">
+          Screenings of
+          <span i18n:name="filmTitle" tal:content="film/Title" />
+              at <span i18n:name="cinemaTitle" tal:content="context/Title" />
+        </h1>
+
+        <p i18n:translate="description_cinema_screenings">
+            This film is being shown at the following times. Click on a
+            time to reserve tickets.
+        </p>
+            
+        <table class="listing">
+            <thead>
+                <tr>
+                    <th i18n:translate="heading_time">Date/time</th>
+                    <th i18n:translate="tickets_remaining">Tickets remaining</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr tal:repeat="screening view/upcomingScreenings">
+                    <tal:block define="reserveURL string:${cinemaURL}/@@reserve/${screening/screeningId}">
+                        <td>
+                            <a tal:attributes="href reserveURL"
+                               tal:omit-tag="not:screening/canReserve">
+                               <tal:block content="screening/showTime" />
+                             </a>
+                        </td>
+                        <td>
+                            <a tal:attributes="href reserveURL"
+                               tal:omit-tag="not:screening/canReserve">
+                               <tal:block content="screening/remainingTickets" />
+                            </a>
+                        </td>
+                    </tal:block>
+                </tr>
+            </tbody>
+        </table>
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+

@@ -39,5 +39,10 @@
         id="optilux.ViewReports"
         title="Optilux: View Reports"
         />
-  
+    
+    <permission
+        id="optilux.MakeReservation"
+        title="Optilux: Make reservation"
+        />
+
 </configure>

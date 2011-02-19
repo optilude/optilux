@@ -15,8 +15,12 @@ from optilux.cinemacontent import CinemaMessageFactory as _
 from plone.indexer import indexer
 
 # Uniqueness validator
+from datetime import datetime, timedelta
+from zope.component import getUtility
 from z3c.form import validator
 from plone.uuid.interfaces import IUUID
+from plone.memoize.instance import memoize
+from optilux.cinemacontent.interfaces import IScreeningLocator
 from Products.CMFCore.utils import getToolByName
 
 def filmCodeIsValid(value):
@@ -117,3 +121,13 @@ class View(grok.View):
         
         self.startDateFormatted = self.context.startDate.strftime("%d %b %Y")
         self.endDateFormatted = self.context.endDate.strftime("%d %b %Y")
+
+    @memoize
+    def cinemas(self, days=14):
+        locator = getUtility(IScreeningLocator)
+        
+        fromDate = datetime.now()
+        toDate = fromDate + timedelta(days)
+        return locator.cinemasForFilm(self.context.filmCode,
+                fromDate, toDate,
+            )

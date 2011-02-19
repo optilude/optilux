@@ -34,6 +34,8 @@ setup(name='optilux.cinemacontent',
           'plone.app.registry',
           'plone.app.z3cform',
           'zope.annotation',
+          'z3c.saconfig',
+          'MySQL-python',
       ],
       extras_require={
           'test': ['plone.app.testing',]

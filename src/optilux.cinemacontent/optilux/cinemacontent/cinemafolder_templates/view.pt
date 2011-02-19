@@ -10,7 +10,7 @@
 <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
         
-        <div tal:replace="structure context/text/output" />
+        <div tal:replace="structure context/text/output | nothing" />
         
         <tal:areas condition="view/haveCinemaFolders">
             <h2 i18n:translate="title_cinemafolder_subareas">Areas</h2>

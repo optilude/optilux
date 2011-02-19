@@ -26,6 +26,16 @@
         
         <div tal:replace="structure context/teaser/output | nothing" />
         
+        <h2 i18n:translate="title_film_showing_at">Now showing at</h2>
+        <dl>
+            <tal:block repeat="cinema view/cinemas">
+                <dt>
+                    <a tal:attributes="href cinema/url" tal:content="cinema/name" />
+                </dt>
+                <dd tal:content="cinema/address" />
+            </tal:block>
+        </dl>
+        
     </metal:content-core>
 </metal:content-core>
 

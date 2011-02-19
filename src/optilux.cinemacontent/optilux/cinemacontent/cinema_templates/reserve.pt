@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="optilux.cinemacontent">
+<body>
+    
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+        
+        <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
+        
+        <div id="content-core">
+            
+            <table class="listing vertical reservation-info">
+                  <tr>
+                      <th i18n:translate="label_reservation_cinema">Cinema</th>
+                      <td tal:content="context/Title" />
+                  </tr>
+                  <tr>
+                      <th i18n:translate="label_reservation_film">Film</th>
+                      <td tal:content="view/filmTitle" />
+                  </tr>
+                  <tr>
+                      <th i18n:translate="label_reservation_screening">Screening</th>
+                      <td tal:content="view/screeningTime" />
+                  </tr>
+                  <tr>
+                      <th i18n:translate="label_reservation_remaining">Tickets remaining</th>
+                      <td tal:content="view/screening/remainingTickets" />
+                  </tr>
+              </table>
+              
+              <p i18n:translate="description_reservations">
+                  Please enter your name and the number of tickets
+                  you would like to reserve. 
+              </p>
+              
+              <div class="divider"><!-- --></div>
+              
+              <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+        </div>
+
+    </tal:main-macro>
+</metal:main>
+</body>
+</html>

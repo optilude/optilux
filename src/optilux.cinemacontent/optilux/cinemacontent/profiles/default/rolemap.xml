@@ -41,5 +41,9 @@
     <permission name="Optilux: View Reports" acquire="False">
         <role name="Manager" />
     </permission>
+    <permission name="Optilux: Make reservation" acquire="True">
+        <role name="Manager" />
+        <role name="Member" />
+    </permission>
   </permissions>
 </rolemap>
