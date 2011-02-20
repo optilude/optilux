@@ -11,6 +11,7 @@
   
   <!-- Include files -->
   <include file="permissions.zcml" />
+  <include file="caching.zcml" />
   
   <!-- Include the sub-packages that use their own configure.zcml files. -->
   <include package=".portlets" />

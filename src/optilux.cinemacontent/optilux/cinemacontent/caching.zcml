@@ -1,0 +1,48 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:cache="http://namespaces.zope.org/cache"
+    i18n_domain="optilux.cinemacontent">
+    
+    <include package="z3c.caching" file="meta.zcml" />
+    
+    <cache:ruleset
+        for=".cinema.View"
+        ruleset="plone.content.folderView"
+        />
+    
+    <cache:ruleset
+        for=".cinema.Screenings"
+        ruleset="plone.content.itemView"
+        />
+    
+    <cache:ruleset
+        for=".cinema.Reserve"
+        ruleset="plone.content.itemView"
+        />
+    
+    <cache:ruleset
+        for=".cinemafolder.View"
+        ruleset="plone.content.folderView"
+        />
+    
+    <cache:ruleset
+        for=".dam.DAMReport"
+        ruleset="plone.content.itemView"
+        />
+    
+    <cache:ruleset
+        for=".enquiry.EnquiryForm"
+        ruleset="plone.content.itemView"
+        />
+    
+    <cache:ruleset
+        for=".film.View"
+        ruleset="plone.content.itemView"
+        />
+    
+    <cache:ruleset
+        for=".promotion.View"
+        ruleset="plone.content.itemView"
+        />
+    
+</configure>

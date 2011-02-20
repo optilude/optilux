@@ -38,6 +38,7 @@ setup(name='optilux.cinemacontent',
           'MySQL-python',
           'five.globalrequest',
           'collective.beaker',
+          'z3c.caching',
       ],
       extras_require={
           'test': ['plone.app.testing',]
