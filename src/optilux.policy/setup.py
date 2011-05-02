@@ -30,6 +30,7 @@ setup(name='optilux.policy',
           'optilux.theme',
           'optilux.cinemacontent',
           'optilux.facebookauth',
+          'plone.app.ldap',
       ],
       extras_require={
           'test': ['plone.app.testing',]

@@ -1,0 +1,42 @@
+version: 1
+
+# Top level - the organization
+dn: dc=optilux-cinemas,dc=com
+dc: optilux-cinemas
+description: Optilux Corporation
+objectClass: dcObject
+objectClass: organization
+o: Optilux Corporation
+
+# Top level - manager
+dn: cn=Manager,dc=optilux-cinemas,dc=com
+objectclass: organizationalRole
+cn: Manager
+
+# Second level - organizational units
+dn: ou=people, dc=optilux-cinemas,dc=com
+ou: people
+description: All people in organisation
+objectclass: organizationalunit
+
+dn: ou=groups, dc=optilux-cinemas,dc=com
+ou: groups
+description: All groups in the organization
+objectclass: organizationalunit
+
+# Third level - people
+dn: uid=ssmith,ou=people,dc=optilux-cinemas,dc=com
+objectClass: pilotPerson
+objectClass: uidObject
+uid: ssmith
+cn: Susan Smith
+sn: Smith
+userPassword:: e1NIQX01ZW42RzZNZXpScm9UM1hLcWtkUE9tWS9CZlE9
+mail: ssmith@optilux-cinemas.com
+
+# Third level - groups
+dn: cn=Staff,ou=groups,dc=optilux-cinemas,dc=com
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: Staff
+uniqueMember: uid=ssmith,ou=people,dc=optilux-cinemas,dc=com
