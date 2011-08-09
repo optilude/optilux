@@ -13,7 +13,6 @@ from optilux.cinemacontent import CinemaMessageFactory as _
 
 # Indexer
 from plone.indexer import indexer
-from DateTime import DateTime
 
 # Uniqueness validator
 from z3c.form import validator
@@ -63,7 +62,7 @@ class IFilm(form.Schema, IImageScaleTraversable):
         )
 
 class ValidateFilmCodeUniqueness(validator.SimpleFieldValidator):
-    """Validate site-wide uniquness of film codes.
+    """Validate site-wide uniqueness of film codes.
     """
     
     def validate(self, value):
@@ -92,10 +91,7 @@ def filmStartIndexer(context):
     """Create a catalogue indexer, registered as an adapter, which can
     populate the ``start`` index with the film's start date.
     """
-    if context.startDate is None:
-        return None
-    # Convert to a Zope 2 DateTime
-    return DateTime(context.startDate.isoformat())
+    return context.startDate
 
 @grok.adapter(IFilm, name='end')
 @indexer(IFilm)
@@ -103,10 +99,7 @@ def filmEndIndexer(context):
     """Create a catalogue indexer, registered as an adapter, which can
     populate the ``end`` index with the film's end date.
     """
-    if context.endDate is None:
-        return None
-    # Convert to a Zope 2 DateTime
-    return DateTime(context.endDate.isoformat())
+    return context.endDate
 
 class View(grok.View):
     """Default view (called "@@view"") for a film.

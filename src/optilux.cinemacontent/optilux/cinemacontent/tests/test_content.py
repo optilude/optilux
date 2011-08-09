@@ -267,11 +267,11 @@ class TestContent(unittest.TestCase):
         terms = list(vocabulary)
         
         self.assertEqual(3, len(terms))
-        titles = [term.token for term in terms]
+        tokens = [term.token for term in terms]
         
-        self.assertTrue('One' in titles)
-        self.assertTrue('Two' in titles)
-        self.assertTrue('Three' in titles)
+        self.assertTrue('One' in tokens)
+        self.assertTrue('Two' in tokens)
+        self.assertTrue('Three' in tokens)
 
     def test_promotions_portlet_added(self):
         

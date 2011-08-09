@@ -24,7 +24,6 @@ from plone.portlets.interfaces import IPortletAssignmentMapping
 from optilux.cinemacontent.interfaces import PROMOTIONS_PORTLET_COLUMN
 from optilux.cinemacontent.portlets import promotions
 
-from Acquisition import aq_inner
 from Acquisition import aq_parent
 
 class ICinemaFolder(form.Schema):
@@ -99,7 +98,7 @@ def addPromotionsPortlet(obj, event):
     # top-level cinema folders. Of course, site managers can move things 
     # around once the site structure is created
     
-    parent = aq_parent(aq_inner(obj))
+    parent = aq_parent(obj)
     if ICinemaFolder.providedBy(parent):
         return
     

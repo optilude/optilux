@@ -61,7 +61,7 @@ class ICinema(form.Schema):
         )
 
 class ValidateCinemaCodeUniqueness(validator.SimpleFieldValidator):
-    """Validate site-wide uniquness of cinema codes.
+    """Validate site-wide uniquneess of cinema codes.
     """
     
     def validate(self, value):

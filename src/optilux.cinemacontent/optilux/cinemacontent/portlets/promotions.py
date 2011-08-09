@@ -15,7 +15,6 @@ from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 
 from DateTime import DateTime
-from Acquisition import aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from Products.CMFCore.utils import getToolByName
@@ -107,13 +106,12 @@ class Renderer(base.Renderer):
         
     @memoize
     def _data(self):
-        context = aq_inner(self.context)
         limit = self.data.count
         
         query = dict(object_provides=IPromotion.__identifier__)
         
         if not self.data.sitewide:
-            query['path'] = '/'.join(context.getPhysicalPath())
+            query['path'] = '/'.join(self.context.getPhysicalPath())
         if not self.data.randomize:
             query['sort_on'] = 'modified'
             query['sort_order'] = 'reverse'
@@ -124,7 +122,7 @@ class Renderer(base.Renderer):
         # administrator would)
         query['effectiveRange'] = DateTime()
         
-        catalog = getToolByName(context, 'portal_catalog')
+        catalog = getToolByName(self.context, 'portal_catalog')
         results = catalog(query)
         
         promotions = []
